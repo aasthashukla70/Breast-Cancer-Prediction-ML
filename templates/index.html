@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Breast Cancer Detection</title>
+</head>
+
+<body>
+
+    <h1>Breast Cancer Detection System</h1>
+
+<form action="/predict" method="POST">
+
+    <label>Mean Radius:</label><br>
+    <input type="number" name="mean_radius" step="any" required><br><br>
+
+    <label>Mean Texture:</label><br>
+    <input type="number" name="mean_texture" step="any" required><br><br>
+
+    <label>Mean Perimeter:</label><br>
+    <input type="number" name="mean_perimeter" step="any" required><br><br>
+
+    <label>Mean Area:</label><br>
+    <input type="number" name="mean_area" step="any" required><br><br>
+
+    <label>Mean Smoothness:</label><br>
+    <input type="number" name="mean_smoothness" step="any" required><br><br>
+
+    <label>Mean Compactness:</label><br>
+    <input type="number" name="mean_compactness" step="any" required><br><br>
+
+    <label>Mean Concavity:</label><br>
+    <input type="number" name="mean_concavity" step="any" required><br><br>
+
+    <label>Mean Concave Points:</label><br>
+    <input type="number" name="mean_concave_points" step="any" required><br><br>
+
+    <label>Mean Symmetry:</label><br>
+    <input type="number" name="mean_symmetry" step="any" required><br><br>
+
+    <label>Mean Fractal Dimension:</label><br>
+    <input type="number" name="mean_fractal_dimension" step="any" required><br><br>
+
+    <label>Radius Error:</label><br>
+    <input type="number" name="radius_error" step="any" required><br><br>
+
+    <label>Texture Error:</label><br>
+    <input type="number" name="texture_error" step="any" required><br><br>
+
+    <label>Perimeter Error:</label><br>
+    <input type="number" name="perimeter_error" step="any" required><br><br>
+
+    <label>Area Error:</label><br>
+    <input type="number" name="area_error" step="any" required><br><br>
+
+    <label>Smoothness Error:</label><br>
+    <input type="number" name="smoothness_error" step="any" required><br><br>
+
+    <label>Compactness Error:</label><br>
+    <input type="number" name="compactness_error" step="any" required><br><br>
+
+    <label>Concavity Error:</label><br>
+    <input type="number" name="concavity_error" step="any" required><br><br>
+
+    <label>Concave Points Error:</label><br>
+    <input type="number" name="concave_points_error" step="any" required><br><br>
+
+    <label>Symmetry Error:</label><br>
+    <input type="number" name="symmetry_error" step="any" required><br><br>
+
+    <label>Fractal Dimension Error:</label><br>
+    <input type="number" name="fractal_dimension_error" step="any" required><br><br>
+
+    <label>Worst Radius:</label><br>
+    <input type="number" name="worst_radius" step="any" required><br><br>
+
+    <label>Worst Texture:</label><br>
+    <input type="number" name="worst_texture" step="any" required><br><br>
+
+    <label>Worst Perimeter:</label><br>
+    <input type="number" name="worst_perimeter" step="any" required><br><br>
+
+    <label>Worst Area:</label><br>
+    <input type="number" name="worst_area" step="any" required><br><br>
+
+    <label>Worst Smoothness:</label><br>
+    <input type="number" name="worst_smoothness" step="any" required><br><br>
+
+    <label>Worst Compactness:</label><br>
+    <input type="number" name="worst_compactness" step="any" required><br><br>
+
+    <label>Worst Concavity:</label><br>
+    <input type="number" name="worst_concavity" step="any" required><br><br>
+
+    <label>Worst Concave Points:</label><br>
+    <input type="number" name="worst_concave_points" step="any" required><br><br>
+
+    <label>Worst Symmetry:</label><br>
+    <input type="number" name="worst_symmetry" step="any" required><br><br>
+
+    <label>Worst Fractal Dimension:</label><br>
+    <input type="number" name="worst_fractal_dimension" step="any" required><br><br>
+
+    <input type="submit" value="Predict">
+
+</form>
+
+    <hr>
+
+    {% if prediction %}
+
+        <h2>{{ prediction }}</h2>
+
+    {% endif %}
+
+</body>
+
+</html>
