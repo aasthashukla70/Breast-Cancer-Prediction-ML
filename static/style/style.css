@@ -169,9 +169,9 @@ button:hover{
 }
 
 .result p{
-    font-size:32px;
+    font-size:36px;
     font-weight:bold;
-    margin-bottom:10px;
+    margin:15px 0;
 }
 
 .result span{
@@ -195,4 +195,72 @@ button:hover{
 
 .malignant p{
     color:#b21f2d;
+}
+
+.button-group{
+    margin-top: 30px;
+}
+
+.demo-buttons{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.demo-buttons button{
+    width: 100%;
+    margin:0;
+}
+
+.predict-btn{
+    display:block;
+    width: 320px;
+    margin:20px auto 0;
+}
+
+.probability-box{
+    margin-top:25px;
+    padding:20px;
+    background:#ffffff;
+    border:1px solid #e5e5e5;
+    border-radius:12px;
+    text-align:left;
+}
+
+.probability-box h3{
+    color:#1f4e79;
+    margin-bottom:18px;
+    font-size:20px;
+}
+
+.probability-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:10px 0;
+    border-bottom:1px solid #ececec;
+    font-size:17px;
+}
+
+.probability-row:last-child{
+    border-bottom:none;
+}
+
+.model-info{
+    margin-top:25px;
+    font-size:18px;
+    border-top:1px solid #dcdcdc;
+}
+
+.model-info p{
+    margin:6px 0;
+    font-size:15px;
+}
+
+.disclaimer{
+    margin-top:12px;
+    color:#666;
+    font-size:14px;
+    line-height:1.7;
 }

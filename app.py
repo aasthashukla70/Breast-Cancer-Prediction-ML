@@ -3,6 +3,7 @@ import joblib
 
 app = Flask(__name__)
 
+
 # Load the trained Machine Learning model
 model = joblib.load("models/model.pkl")
 scaler = joblib.load("models/scaler.pkl")
@@ -54,6 +55,7 @@ def home():
     return render_template(
         "index.html",
         prediction=None,
+        form_data={},
         mean_features=mean_features,
         error_features=error_features,
         worst_features=worst_features
@@ -100,20 +102,30 @@ def predict():
         float(request.form["worst_fractal_dimension"])
     ]
 
-    # Predict
+    # Scale input features
     scaled_features = scaler.transform([features])
 
+    # Predict class
     prediction = model.predict(scaled_features)[0]
+
+    # Predict probabilities
+    probabilities = model.predict_proba(scaled_features)[0]
+
+    benign_probability = round(probabilities[1] * 100, 2)
+    malignant_probability = round(probabilities[0] * 100, 2)
 
     prediction = "Benign" if prediction == 1 else "Malignant"
 
     return render_template(
-        "index.html",
-        prediction=prediction,
-        mean_features=mean_features,
-        error_features=error_features,
-        worst_features=worst_features
-    )
+    "index.html",
+    prediction=prediction,
+    benign_probability=benign_probability,
+    malignant_probability=malignant_probability,
+    form_data=request.form,
+    mean_features=mean_features,
+    error_features=error_features,
+    worst_features=worst_features
+)
 
 
 if __name__ == "__main__":
