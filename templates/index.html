@@ -1,117 +1,147 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Breast Cancer Detection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/style.css') }}">
+
 </head>
 
 <body>
 
-    <h1>Breast Cancer Detection System</h1>
+<div class="container">
 
-<form action="/predict" method="POST">
+   <div class="hero">
 
-    <label>Mean Radius:</label><br>
-    <input type="number" name="mean_radius" step="any" required><br><br>
+    <h1>🩺 Breast Cancer Detection System</h1>
 
-    <label>Mean Texture:</label><br>
-    <input type="number" name="mean_texture" step="any" required><br><br>
+    <p>
+        Predict whether a breast tumor is <strong>Benign</strong> or
+        <strong>Malignant</strong> using a Machine Learning model trained on
+        diagnostic cell nucleus measurements.
+    </p>
 
-    <label>Mean Perimeter:</label><br>
-    <input type="number" name="mean_perimeter" step="any" required><br><br>
+    <div class="info-box">
 
-    <label>Mean Area:</label><br>
-    <input type="number" name="mean_area" step="any" required><br><br>
+        <p>
+            Please enter all <strong>30 diagnostic features</strong> accurately
+            before making a prediction.
+        </p>
 
-    <label>Mean Smoothness:</label><br>
-    <input type="number" name="mean_smoothness" step="any" required><br><br>
+    </div>
 
-    <label>Mean Compactness:</label><br>
-    <input type="number" name="mean_compactness" step="any" required><br><br>
+</div>
 
-    <label>Mean Concavity:</label><br>
-    <input type="number" name="mean_concavity" step="any" required><br><br>
+    <form action="/predict" method="POST">
 
-    <label>Mean Concave Points:</label><br>
-    <input type="number" name="mean_concave_points" step="any" required><br><br>
+    <div class="feature-grid">
 
-    <label>Mean Symmetry:</label><br>
-    <input type="number" name="mean_symmetry" step="any" required><br><br>
+        <!-- Mean Features -->
 
-    <label>Mean Fractal Dimension:</label><br>
-    <input type="number" name="mean_fractal_dimension" step="any" required><br><br>
+        <div class="feature-card">
 
-    <label>Radius Error:</label><br>
-    <input type="number" name="radius_error" step="any" required><br><br>
+            <h2>Mean Features</h2>
 
-    <label>Texture Error:</label><br>
-    <input type="number" name="texture_error" step="any" required><br><br>
+            {% for label, name in mean_features %}
 
-    <label>Perimeter Error:</label><br>
-    <input type="number" name="perimeter_error" step="any" required><br><br>
+            <div class="input-row">
 
-    <label>Area Error:</label><br>
-    <input type="number" name="area_error" step="any" required><br><br>
+                <label>{{ label }}</label>
 
-    <label>Smoothness Error:</label><br>
-    <input type="number" name="smoothness_error" step="any" required><br><br>
+                <input
+                    type="number"
+                    name="{{ name }}"
+                    step="any"
+                    placeholder="Enter value"
+                    required
+                >
 
-    <label>Compactness Error:</label><br>
-    <input type="number" name="compactness_error" step="any" required><br><br>
+            </div>
 
-    <label>Concavity Error:</label><br>
-    <input type="number" name="concavity_error" step="any" required><br><br>
+            {% endfor %}
 
-    <label>Concave Points Error:</label><br>
-    <input type="number" name="concave_points_error" step="any" required><br><br>
+        </div>
 
-    <label>Symmetry Error:</label><br>
-    <input type="number" name="symmetry_error" step="any" required><br><br>
+        <!-- Error Features -->
 
-    <label>Fractal Dimension Error:</label><br>
-    <input type="number" name="fractal_dimension_error" step="any" required><br><br>
+        <div class="feature-card">
 
-    <label>Worst Radius:</label><br>
-    <input type="number" name="worst_radius" step="any" required><br><br>
+            <h2>Error Features</h2>
 
-    <label>Worst Texture:</label><br>
-    <input type="number" name="worst_texture" step="any" required><br><br>
+            {% for label, name in error_features %}
 
-    <label>Worst Perimeter:</label><br>
-    <input type="number" name="worst_perimeter" step="any" required><br><br>
+            <div class="input-row">
 
-    <label>Worst Area:</label><br>
-    <input type="number" name="worst_area" step="any" required><br><br>
+                <label>{{ label }}</label>
 
-    <label>Worst Smoothness:</label><br>
-    <input type="number" name="worst_smoothness" step="any" required><br><br>
+                <input
+                    type="number"
+                    name="{{ name }}"
+                    step="any"
+                    placeholder="Enter value"
+                    required
+                >
 
-    <label>Worst Compactness:</label><br>
-    <input type="number" name="worst_compactness" step="any" required><br><br>
+            </div>
 
-    <label>Worst Concavity:</label><br>
-    <input type="number" name="worst_concavity" step="any" required><br><br>
+            {% endfor %}
 
-    <label>Worst Concave Points:</label><br>
-    <input type="number" name="worst_concave_points" step="any" required><br><br>
+        </div>
 
-    <label>Worst Symmetry:</label><br>
-    <input type="number" name="worst_symmetry" step="any" required><br><br>
+    </div>
 
-    <label>Worst Fractal Dimension:</label><br>
-    <input type="number" name="worst_fractal_dimension" step="any" required><br><br>
+    <!-- Worst Features -->
 
-    <input type="submit" value="Predict">
+    <div class="feature-card worst-card">
+
+        <h2>Worst Features</h2>
+
+        {% for label, name in worst_features %}
+
+        <div class="input-row">
+
+            <label>{{ label }}</label>
+
+            <input
+                type="number"
+                name="{{ name }}"
+                step="any"
+                placeholder="Enter value"
+                required
+            >
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+    <button type="submit">
+        Predict Tumor
+    </button>
 
 </form>
 
-    <hr>
+{% if prediction %}
 
-    {% if prediction %}
+<div class="result {% if prediction == 'Benign' %}benign{% else %}malignant{% endif %}">
 
-        <h2>{{ prediction }}</h2>
+    <h2>Prediction Result</h2>
 
-    {% endif %}
+    <p>{{ prediction }}</p>
+
+    <span>
+        Generated using the Machine Learning model.
+    </span>
+
+</div>
+
+{% endif %}
+
+</div>
 
 </body>
 
